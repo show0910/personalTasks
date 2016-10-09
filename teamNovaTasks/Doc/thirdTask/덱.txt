@@ -1,0 +1,34 @@
+Unit 
+
+-- Human
+ 1. FootMan  X 3  (1 1/2) 돌진
+ 2. Knight   X 2  (2 3/2) 
+ 3. Sniper   X 2  (4 4/2)
+ 4. Magician      (6 6/3)
+ 5. Gryphon       (6 3/6) 도발
+ 6. Sword Master  (7 6/6)
+ 
+
+-- Demon
+ 1. skeleton X 3 (1 1/2) 돌진
+ 2. zombie   X 2 (2 3/2)
+ 3. shadow   X 2 (4 4/2)
+ 4. vampire      (6 6/3)
+ 5. warewolf     (6 3/6) 도발
+ 6. doom lord    (7 6/6)
+
+
+Spell
+
+-- Human
+ 1. Fire Ball X 2 (2) (Unit 또는 캐릭터에게 2 Damage,)
+ 2. Frozen        (2) (1개 Unit 2턴 못 움직이기)
+ 3. Fire Spear    (4) (Unit에게 4Damage)
+ 4. Blizzard      (4) (전체 Unit 1턴 못움직이기)
+
+-- Demon
+ 1. spoil X 2      (2) (Unit 또는 캐릭터에게 2 Damage )
+ 2. ring of death  (2) (1개 Unit 2턴 못 움직이기)
+ 3. hell fire (4) (Unit에게 4Damage)
+ 4. earthquake     (4) (전체 Unit 1턴 못움직이기)
+
