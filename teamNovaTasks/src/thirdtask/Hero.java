@@ -1,22 +1,34 @@
-package thirdTask;
+package thirdtask;
 
-public class hero {
+public class Hero {
 
 	private String species;
 	private String name;
 	private int life;
 	private int mana;
+	private int shuffleAble;
 	
-	public hero(int check) {
+	public int getShuffleAble() {
+		return shuffleAble;
+	}
+
+	public void setShuffleAble(int shuffleAble) {
+		this.shuffleAble = shuffleAble;
+	}
+
+	public Hero(int check) {
 
 		if (check == 1) {
-			this.setSpecies("human");
+			this.species = "human";
 			this.life = 20;
 			this.mana = 1;
+			this.shuffleAble = 1;
+			this.name = "James";
 		} else if (check == 2) {
-			this.setSpecies("demon");
+			this.species = "demon";
 			this.life = 20;
 			this.mana = 1;
+			this.name = "Ilidan";
 		}
 	}
 

@@ -1,14 +1,14 @@
-package thirdTask;
+package thirdtask;
 
 import java.util.ArrayList;
 
-public class planet_war {
+public class CardGame {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		commonFunction cf = new commonFunction();
-		pageNum pn = new pageNum();
+		CommonFunction cf = new CommonFunction();
+		PageNum pn = new PageNum();
 		int returnValue = 0;
 		int myHeroNum = 0;
 		int yourHeroNum = 0;
@@ -30,7 +30,7 @@ public class planet_war {
 			attackValid[i] = 1; 
 		}
 		
-		while (1 == 1) {
+		while (true) {
 			
 			myDeck.clear();
 			yourDeck.clear();
@@ -48,8 +48,8 @@ public class planet_war {
 				yourHeroNum = 1;
 			}
 
-			hero myHero = new hero(myHeroNum);
-			hero yourHero = new hero(yourHeroNum);
+			Hero myHero = new Hero(myHeroNum);
+			Hero yourHero = new Hero(yourHeroNum);
 
 			// Deck Shuffle
 			myDeck = cf.deckShuffle(myHeroNum, myDeck);
@@ -61,7 +61,7 @@ public class planet_war {
 
 			
 			
-			while (1 == 1) {
+			while (true) {
 
 				//Unit АјАн
 				returnValue = pn.pageTwo(turn, myHero, yourHero, myDeck,

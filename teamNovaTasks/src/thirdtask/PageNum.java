@@ -1,10 +1,10 @@
-package thirdTask;
+package thirdtask;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
-public class pageNum {
+public class PageNum {
 
 	Scanner scan = new Scanner(System.in);
 	int num;
@@ -36,7 +36,7 @@ public class pageNum {
 		return num;
 	}
 
-	public int pageTwo(int turn, hero myHero, hero yourHero, ArrayList myDeck,
+	public int pageTwo(int turn, Hero myHero, Hero yourHero, ArrayList myDeck,
 			ArrayList yourDeck, ArrayList myHandCard, ArrayList yourHandCard,
 			ArrayList myField, ArrayList yourField) {
 
@@ -84,21 +84,21 @@ public class pageNum {
 		// 내 필드와 상대방 필드 세팅, 없으면 Empty로
 
 		if (yourField.size() > 0) {
-			unit yourField1 = (unit) yourField.get(0);
+			Unit yourField1 = (Unit) yourField.get(0);
 			yourFieldName1 = yourField1.getName();
 			yourFieldAttack1 = yourField1.getAttack();
 			yourFieldHealth1 = yourField1.getHealth();
 		}
 
 		if (yourField.size() > 1) {
-			unit yourField2 = (unit) yourField.get(1);
+			Unit yourField2 = (Unit) yourField.get(1);
 			yourFieldName2 = yourField2.getName();
 			yourFieldAttack2 = yourField2.getAttack();
 			yourFieldHealth2 = yourField2.getHealth();
 		}
 
 		if (yourField.size() > 2) {
-			unit yourField3 = (unit) yourField.get(2);
+			Unit yourField3 = (Unit) yourField.get(2);
 			yourFieldName3 = yourField3.getName();	
 			yourFieldAttack3 = yourField3.getAttack();
 			yourFieldHealth3 = yourField3.getHealth();
@@ -106,7 +106,7 @@ public class pageNum {
 		}
 
 		if (yourField.size() > 3) {
-			unit yourField4 = (unit) yourField.get(3);
+			Unit yourField4 = (Unit) yourField.get(3);
 			yourFieldName4 = yourField4.getName();
 			yourFieldAttack4 = yourField4.getAttack();
 			yourFieldHealth4 = yourField4.getHealth();
@@ -114,28 +114,28 @@ public class pageNum {
 		}
 
 		if (myField.size() > 0) {
-			unit myField1 = (unit) myField.get(0);
+			Unit myField1 = (Unit) myField.get(0);
 			myFieldName1 = myField1.getName();
 			myFieldAttack1 = myField1.getAttack();
 			myFieldHealth1 = myField1.getHealth();
 		}
 
 		if (myField.size() > 1) {
-			unit myField2 = (unit) myField.get(1);
+			Unit myField2 = (Unit) myField.get(1);
 			myFieldName2 = myField2.getName();
 			myFieldAttack2 = myField2.getAttack();
 			myFieldHealth2 = myField2.getHealth();
 		}
 
 		if (myField.size() > 2) {
-			unit myField3 = (unit) myField.get(2);
+			Unit myField3 = (Unit) myField.get(2);
 			myFieldName3 = myField3.getName();
 			myFieldAttack3 = myField3.getAttack();
 			myFieldHealth3 = myField3.getHealth();
 		}
 
 		if (myField.size() > 3) {
-			unit myField4 = (unit) myField.get(3);
+			Unit myField4 = (Unit) myField.get(3);
 			myFieldName4 = myField4.getName();
 			myFieldAttack4 = myField4.getAttack();
 			myFieldHealth4 = myField4.getHealth();
@@ -151,12 +151,12 @@ public class pageNum {
 
 			if (myHandCard.size() > 0) {
 				String name = (myHandCard.get(0).getClass().getName()).substring(10);
-				if (name.equals("unit")) {
-					card handCard1 = (card) myHandCard.get(0);
+				if (name.equals("Unit")) {
+					Card handCard1 = (Card) myHandCard.get(0);
 					handCardName1 = handCard1.getName();
 					consumeMana1 = handCard1.getConsumeMana();
-				} else if (name.equals("spell")) {
-					card handCard1 = (spell) myHandCard.get(0);
+				} else if (name.equals("Spell")) {
+					Card handCard1 = (Spell) myHandCard.get(0);
 					handCardName1 = handCard1.getName();
 					consumeMana1 = handCard1.getConsumeMana();
 				}
@@ -165,12 +165,12 @@ public class pageNum {
 
 			if (myHandCard.size() > 1) {
 				String name = (myHandCard.get(1).getClass().getName()).substring(10);
-				if (name.equals("unit")) {
-					card handCard2 = (card) myHandCard.get(1);
+				if (name.equals("Unit")) {
+					Card handCard2 = (Card) myHandCard.get(1);
 					handCardName2 = handCard2.getName();
 					consumeMana2 = handCard2.getConsumeMana();
-				} else if (name.equals("spell")) {
-					card handCard2 = (spell) myHandCard.get(1);
+				} else if (name.equals("Spell")) {
+					Card handCard2 = (Spell) myHandCard.get(1);
 					handCardName2 = handCard2.getName();
 					consumeMana2 = handCard2.getConsumeMana();
 				}
@@ -178,12 +178,12 @@ public class pageNum {
 
 			if (myHandCard.size() > 2) {
 				String name = (myHandCard.get(2).getClass().getName()).substring(10);
-				if (name.equals("unit")) {
-					card handCard3 = (card) myHandCard.get(2);
+				if (name.equals("Unit")) {
+					Card handCard3 = (Card) myHandCard.get(2);
 					handCardName3 = handCard3.getName();
 					consumeMana3 = handCard3.getConsumeMana();
-				} else if (name.equals("spell")) {
-					card handCard3 = (spell) myHandCard.get(2);
+				} else if (name.equals("Spell")) {
+					Card handCard3 = (Spell) myHandCard.get(2);
 					handCardName3 = handCard3.getName();
 					consumeMana3 = handCard3.getConsumeMana();
 				}
@@ -191,12 +191,12 @@ public class pageNum {
 			
 			if (myHandCard.size() > 3) {
 				String name = (myHandCard.get(3).getClass().getName()).substring(10);
-				if (name.equals("unit")) {
-					card handCard4 = (card) myHandCard.get(3);
+				if (name.equals("Unit")) {
+					Card handCard4 = (Card) myHandCard.get(3);
 					handCardName4 = handCard4.getName();
 					consumeMana4 = handCard4.getConsumeMana();
-				} else if (name.equals("spell")) {
-					card handCard4 = (spell) myHandCard.get(3);
+				} else if (name.equals("Spell")) {
+					Card handCard4 = (Spell) myHandCard.get(3);
 					handCardName4 = handCard4.getName();
 					consumeMana4 = handCard4.getConsumeMana();
 				}
@@ -204,12 +204,12 @@ public class pageNum {
 			
 			if (myHandCard.size() > 4) {
 				String name = (myHandCard.get(4).getClass().getName()).substring(10);
-				if (name.equals("unit")) {
-					card handCard5 = (card) myHandCard.get(4);
+				if (name.equals("Unit")) {
+					Card handCard5 = (Card) myHandCard.get(4);
 					handCardName5 = handCard5.getName();
 					consumeMana5 = handCard5.getConsumeMana();
-				} else if (name.equals("spell")) {
-					card handCard5 = (spell) myHandCard.get(4);
+				} else if (name.equals("Spell")) {
+					Card handCard5 = (Spell) myHandCard.get(4);
 					handCardName5 = handCard5.getName();
 					consumeMana5 = handCard5.getConsumeMana();
 				}
@@ -258,12 +258,12 @@ public class pageNum {
 
 			if (yourHandCard.size() > 0) {
 				String name = (yourHandCard.get(0).getClass().getName()).substring(10);
-				if (name.equals("unit")) {
-					card handCard1 = (card) yourHandCard.get(0);
+				if (name.equals("Unit")) {
+					Card handCard1 = (Card) yourHandCard.get(0);
 					handCardName1 = handCard1.getName();
 					consumeMana1 = handCard1.getConsumeMana();
-				} else if (name.equals("spell")) {
-					card handCard1 = (spell) yourHandCard.get(0);
+				} else if (name.equals("Spell")) {
+					Card handCard1 = (Spell) yourHandCard.get(0);
 					handCardName1 = handCard1.getName();
 					consumeMana1 = handCard1.getConsumeMana();
 				}
@@ -272,12 +272,12 @@ public class pageNum {
 
 			if (yourHandCard.size() > 1) {
 				String name = (yourHandCard.get(1).getClass().getName()).substring(10);
-				if (name.equals("unit")) {
-					card handCard2 = (card) yourHandCard.get(1);
+				if (name.equals("Unit")) {
+					Card handCard2 = (Card) yourHandCard.get(1);
 					handCardName2 = handCard2.getName();
 					consumeMana2 = handCard2.getConsumeMana();
-				} else if (name.equals("spell")) {
-					card handCard2 = (spell) yourHandCard.get(1);
+				} else if (name.equals("Spell")) {
+					Card handCard2 = (Spell) yourHandCard.get(1);
 					handCardName2 = handCard2.getName();
 					consumeMana2 = handCard2.getConsumeMana();
 				}
@@ -285,12 +285,12 @@ public class pageNum {
 
 			if (yourHandCard.size() > 2) {
 				String name = (yourHandCard.get(2).getClass().getName()).substring(10);
-				if (name.equals("unit")) {
-					card handCard3 = (card) yourHandCard.get(2);
+				if (name.equals("Unit")) {
+					Card handCard3 = (Card) yourHandCard.get(2);
 					handCardName3 = handCard3.getName();
 					consumeMana3 = handCard3.getConsumeMana();
-				} else if (name.equals("spell")) {
-					card handCard3 = (spell) yourHandCard.get(2);
+				} else if (name.equals("Spell")) {
+					Card handCard3 = (Spell) yourHandCard.get(2);
 					handCardName3 = handCard3.getName();
 					consumeMana3 = handCard3.getConsumeMana();
 				}
@@ -298,12 +298,12 @@ public class pageNum {
 			
 			if (yourHandCard.size() > 3) {
 				String name = (yourHandCard.get(3).getClass().getName()).substring(10);
-				if (name.equals("unit")) {
-					card handCard4 = (card) yourHandCard.get(3);
+				if (name.equals("Unit")) {
+					Card handCard4 = (Card) yourHandCard.get(3);
 					handCardName4 = handCard4.getName();
 					consumeMana4 = handCard4.getConsumeMana();
-				} else if (name.equals("spell")) {
-					card handCard4 = (spell) yourHandCard.get(3);
+				} else if (name.equals("Spell")) {
+					Card handCard4 = (Spell) yourHandCard.get(3);
 					handCardName4 = handCard4.getName();
 					consumeMana4 = handCard4.getConsumeMana();
 				}
@@ -311,12 +311,12 @@ public class pageNum {
 			
 			if (yourHandCard.size() > 4) {
 				String name = (yourHandCard.get(4).getClass().getName()).substring(10);
-				if (name.equals("unit")) {
-					card handCard5 = (card) yourHandCard.get(4);
+				if (name.equals("Unit")) {
+					Card handCard5 = (Card) yourHandCard.get(4);
 					handCardName5 = handCard5.getName();
 					consumeMana5 = handCard5.getConsumeMana();
-				} else if (name.equals("spell")) {
-					card handCard5 = (spell) yourHandCard.get(4);
+				} else if (name.equals("Spell")) {
+					Card handCard5 = (Spell) yourHandCard.get(4);
 					handCardName5 = handCard5.getName();
 					consumeMana5 = handCard5.getConsumeMana();
 				}
@@ -363,7 +363,7 @@ public class pageNum {
 	}
 	
 	// 소환된 유닛으로 공격
-	public int pageThree(int turn, hero myHero, hero yourHero, ArrayList myField, ArrayList yourField, int[] attackValid) {
+	public int pageThree(int turn, Hero myHero, Hero yourHero, ArrayList myField, ArrayList yourField, int[] attackValid) {
 		
 		int attackerNum = 0;
 		int targetNum = 0;
@@ -434,7 +434,7 @@ public class pageNum {
 				System.out.println("** 공격할 대상이 없습니다. 다시 선택해주세요.    *******************");
 			}
 			
-			unit attacker = (unit) myField.get(attackerNum);
+			Unit attacker = (Unit) myField.get(attackerNum);
 			
 			if ( targetNum == -1) {
 				yourHeroLife = yourHero.getLife() - attacker.getAttack();
@@ -447,7 +447,7 @@ public class pageNum {
 				yourHero.setLife(yourHeroLife);
 				attackValid[attackerNum] = 0;
 			} else {
-				unit target = (unit) yourField.get(targetNum);
+				Unit target = (Unit) yourField.get(targetNum);
 				
 				targetHealth = target.getHealth() - attacker.getAttack();
 				attackerHealth = attacker.getHealth() - target.getAttack();
@@ -537,7 +537,7 @@ public class pageNum {
 				System.out.println("** 공격할 대상이 없습니다. 다시 선택해주세요.    *******************");
 			}
 			
-			unit attacker = (unit) yourField.get(attackerNum);
+			Unit attacker = (Unit) yourField.get(attackerNum);
 			
 			if ( targetNum == -1) {
 				myHeroLife = myHero.getLife() - attacker.getAttack();
@@ -550,7 +550,7 @@ public class pageNum {
 				myHero.setLife(myHeroLife);
 				attackValid[attackerNum] = 0;
 			} else {
-				unit target = (unit) myField.get(targetNum);
+				Unit target = (Unit) myField.get(targetNum);
 				
 				targetHealth = target.getHealth() - attacker.getAttack();
 				attackerHealth = attacker.getHealth() - target.getAttack();
@@ -583,7 +583,7 @@ public class pageNum {
 	}
 	
 	//유닛 소환 및 마법 사용
-	public int pageFour(int turn, hero myHero, hero yourHero, ArrayList myHandCard, 
+	public int pageFour(int turn, Hero myHero, Hero yourHero, ArrayList myHandCard, 
 			            ArrayList yourHandCard, ArrayList myField, ArrayList yourField, int[] attackValid) {
 		
 		int use = 0;
@@ -620,8 +620,8 @@ public class pageNum {
 				
 				
 				String name = (myHandCard.get(use).getClass().getName()).substring(10);
-				if (name.equals("unit")) {
-					unit unit = (unit) myHandCard.get(use);
+				if (name.equals("Unit")) {
+					Unit unit = (Unit) myHandCard.get(use);
 					
 					if ( myField.size() == 4 ) {
 						System.out.println("필드가 꽉 찼습니다.");
@@ -640,8 +640,8 @@ public class pageNum {
 					
 					return victory;
 					
-				} else if (name.equals("spell")) {
-					spell attackSpell = (spell) myHandCard.get(use);
+				} else if (name.equals("Spell")) {
+					Spell attackSpell = (Spell) myHandCard.get(use);
 					
 					while ( 1==1 ) {
 					
@@ -687,7 +687,7 @@ public class pageNum {
 						yourHero.setLife(yourHeroLife);
 						return victory;
 					} else {
-						unit target = (unit) yourField.get(targetNum);
+						Unit target = (Unit) yourField.get(targetNum);
 						
 						targetHealth = target.getHealth() - attackSpell.getDamage();
 						
@@ -730,8 +730,8 @@ public class pageNum {
 				}
 				
 				String name = (yourHandCard.get(use).getClass().getName()).substring(10);
-				if (name.equals("unit")) {
-					unit unit = (unit) yourHandCard.get(use);
+				if (name.equals("Unit")) {
+					Unit unit = (Unit) yourHandCard.get(use);
 					
 					if ( yourField.size() == 4 ) {
 						System.out.println("필드가 꽉 찼습니다.");
@@ -750,8 +750,8 @@ public class pageNum {
 					yourHandCard.remove(use);
 					
 					return victory;
-				} else if (name.equals("spell")) {
-					spell attackSpell = (spell) yourHandCard.get(use);
+				} else if (name.equals("Spell")) {
+					Spell attackSpell = (Spell) yourHandCard.get(use);
 					
 					while ( 1==1 ) {
 					
@@ -799,7 +799,7 @@ public class pageNum {
 						myHero.setLife(myHeroLife);
 						return victory;
 					} else {
-						unit target = (unit) yourField.get(targetNum);
+						Unit target = (Unit) yourField.get(targetNum);
 						
 						targetHealth = target.getHealth() - attackSpell.getDamage();
 						

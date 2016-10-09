@@ -1,6 +1,6 @@
-package thirdTask;
+package thirdtask;
 
-public class card {
+public class Card {
 
 	private int consumeMana;
 	private String Description;

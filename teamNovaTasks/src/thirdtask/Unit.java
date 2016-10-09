@@ -1,6 +1,6 @@
-package thirdTask;
+package thirdtask;
 
-public class unit extends card {
+public class Unit extends Card {
 
 	private int attack;
 	private int health;
@@ -11,7 +11,7 @@ public class unit extends card {
 	// 1. 돌진 : 바로 공격
 	// 2. 도발 : 영웅 먼저 공격 X
 
-	public unit(String unit) {
+	public Unit(String unit) {
 		if (unit.equals("footMan")) {
 
 			super.setSpecies("human");

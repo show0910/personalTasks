@@ -1,4 +1,4 @@
-package thirdTask;
+package thirdtask;
 
 public class design {
 	public static void main(String[] args) {

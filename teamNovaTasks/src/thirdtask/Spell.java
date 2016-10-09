@@ -1,6 +1,6 @@
-package thirdTask;
+package thirdtask;
 
-public class spell extends card {
+public class Spell extends Card {
 
 	private int damage;
 	private int abilityNum;
@@ -11,7 +11,7 @@ public class spell extends card {
 	// 3 : Unit에게 4 Damage
 	// 4 : Unit에게 5 Damage
 
-	public spell(String spell) {
+	public Spell(String spell) {
 		if (spell.equals("blizzard")) {
 			super.setSpecies("human");
 			super.setConsumeMana(4);
