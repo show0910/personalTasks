@@ -45,6 +45,7 @@ public class caseNum {
 				md.setRoadType(1);
 				md.setOwnRoad(2);
 				md.setLine(1);
+				md.setBaitValid(0);
 				break;
 
 			} else if (inputValue == 2) {
@@ -350,21 +351,46 @@ public class caseNum {
 
 	public int sixPage(model md) throws IOException {
 
-		randomNum = cf.randomNum();
-
-		// 낚시터 + 미끼 확률 만큼 물고기를 낚을 수 있다.
-		if (randomNum < (cf.locChance(md.getLocation()) + cf.bait(md.getBait()))) {
-			System.out.println("물고기가 물었다...!!!");
-			System.out.println("Enter 키를 누르시면 계속 진행합니다.");
-
-			System.in.read();
-
+		fishingThread fishingThread = new fishingThread();
+		
+		fishingThread.process(md);
+		
+		fishingThread.start();
+		
+		try {
+			fishingThread.join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		if ( md.getBaitValid() == 1) {
+			
 			return 1;
-
-		} else { // 물고기를 놓쳤다.
-
+			
+		}else if ( md.getBaitValid() == 0) {
+			
 			return 2;
 		}
+		
+		
+		return 2;
+		
+//		randomNum = cf.randomNum(); // 0 ~ 99까지 출력
+//
+//		// 낚시터 + 미끼 확률 만큼 물고기를 낚을 수 있다.
+//		if (randomNum < (cf.locChance(md.getLocation()) + cf.bait(md.getBait()))) {
+//			System.out.println("물고기가 물었다...!!!");
+//			System.out.println("Enter 키를 누르시면 계속 진행합니다.");
+//
+//			System.in.read();
+//
+//			return 1;
+//
+//		} else { // 물고기를 놓쳤다.
+//
+//			return 2;
+//		}
 	}
 
 	public void sevenPage() throws IOException {

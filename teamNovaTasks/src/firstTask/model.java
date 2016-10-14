@@ -12,7 +12,14 @@ public class model {
 	int line;
 	int inputValue;
 	int validNum;
+	private int baitValid;
 	
+	public int getBaitValid() {
+		return baitValid;
+	}
+	public void setBaitValid(int baitValid) {
+		this.baitValid = baitValid;
+	}
 	public String getName() {
 		return name;
 	}
