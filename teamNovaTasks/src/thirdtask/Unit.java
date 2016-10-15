@@ -5,7 +5,8 @@ public class Unit extends Card {
 	private int attack;
 	private int health;
 	private int specAbility;
-
+	private int noActTurn;
+	
 	// Special Ability
 	// 0 : 없음
 	// 1. 돌진 : 바로 공격
@@ -21,7 +22,8 @@ public class Unit extends Card {
 			this.setAttack(1);
 			this.setHealth(2);
 			this.setSpecAbility(1);
-
+			this.setNoActTurn(0);
+			
 		} else if (unit.equals("gryphon")) {
 			super.setSpecies("human");
 			super.setConsumeMana(6);
@@ -29,7 +31,8 @@ public class Unit extends Card {
 			super.setDescription("하늘의 제왕 그리폰");
 			this.setAttack(3);
 			this.setHealth(6);
-			this.setSpecAbility(2);
+			this.setSpecAbility(0);
+			this.setNoActTurn(0);
 		} else if (unit.equals("knight")) {
 			super.setSpecies("human");
 			super.setConsumeMana(2);
@@ -38,6 +41,7 @@ public class Unit extends Card {
 			this.setAttack(3);
 			this.setHealth(2);
 			this.setSpecAbility(0);
+			this.setNoActTurn(0);
 		} else if (unit.equals("magician")) {
 			super.setSpecies("human");
 			super.setConsumeMana(6);
@@ -46,6 +50,7 @@ public class Unit extends Card {
 			this.setAttack(6);
 			this.setHealth(3);
 			this.setSpecAbility(0);
+			this.setNoActTurn(0);
 		} else if (unit.equals("sniper")) {
 			super.setSpecies("human");
 			super.setConsumeMana(4);
@@ -54,6 +59,7 @@ public class Unit extends Card {
 			this.setAttack(4);
 			this.setHealth(2);
 			this.setSpecAbility(0);
+			this.setNoActTurn(0);
 		} else if (unit.equals("swordMaster")) {
 			super.setSpecies("human");
 			super.setConsumeMana(7);
@@ -62,6 +68,7 @@ public class Unit extends Card {
 			this.setAttack(6);
 			this.setHealth(6);
 			this.setSpecAbility(0);
+			this.setNoActTurn(0);
 		} else if (unit.equals("skeleton")) {
 			super.setSpecies("demon");
 			super.setConsumeMana(1);
@@ -70,6 +77,7 @@ public class Unit extends Card {
 			this.setAttack(1);
 			this.setHealth(2);
 			this.setSpecAbility(1);
+			this.setNoActTurn(0);
 		} else if (unit.equals("zombie")) {
 			super.setSpecies("demon");
 			super.setConsumeMana(2);
@@ -78,6 +86,7 @@ public class Unit extends Card {
 			this.setAttack(3);
 			this.setHealth(2);
 			this.setSpecAbility(0);
+			this.setNoActTurn(0);
 		} else if (unit.equals("shadow")) {
 			super.setSpecies("demon");
 			super.setConsumeMana(4);
@@ -86,6 +95,7 @@ public class Unit extends Card {
 			this.setAttack(4);
 			this.setHealth(2);
 			this.setSpecAbility(0);
+			this.setNoActTurn(0);
 		} else if (unit.equals("vampire")) {
 			super.setSpecies("demon");
 			super.setConsumeMana(6);
@@ -94,6 +104,7 @@ public class Unit extends Card {
 			this.setAttack(6);
 			this.setHealth(3);
 			this.setSpecAbility(0);
+			this.setNoActTurn(0);
 		} else if (unit.equals("warewolf")) {
 			super.setSpecies("demon");
 			super.setConsumeMana(6);
@@ -101,7 +112,8 @@ public class Unit extends Card {
 			super.setDescription("탱킹 웨어울프");
 			this.setAttack(3);
 			this.setHealth(6);
-			this.setSpecAbility(2);
+			this.setSpecAbility(0);
+			this.setNoActTurn(0);
 		} else if (unit.equals("doomLord")) {
 			super.setSpecies("demon");
 			super.setConsumeMana(7);
@@ -110,7 +122,16 @@ public class Unit extends Card {
 			this.setAttack(6);
 			this.setHealth(6);
 			this.setSpecAbility(0);
+			this.setNoActTurn(0);
 		}
+	}
+
+	public int getNoActTurn() {
+		return noActTurn;
+	}
+
+	public void setNoActTurn(int noActTurn) {
+		this.noActTurn = noActTurn;
 	}
 
 	public int getAttack() {

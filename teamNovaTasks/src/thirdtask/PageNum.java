@@ -36,7 +36,7 @@ public class PageNum {
         return num;
     }
 
-    public int pageTwo(int turn, Hero myHero, Hero yourHero, ArrayList myDeck,
+    public int pageTwo(int turn, long startTime, Hero myHero, Hero yourHero, ArrayList myDeck,
             ArrayList yourDeck, ArrayList myHandCard, ArrayList yourHandCard,
             ArrayList myField, ArrayList yourField) {
 
@@ -79,7 +79,12 @@ public class PageNum {
         int consumeMana5 = 0;
         int mana = 0;
         int onlyTurn = (turn + 1) / 2;
-
+        
+        long endTime = System.currentTimeMillis();
+		
+		long lastTime = 180000 - (endTime - startTime); // 180000 = 3분
+		long timeMin = lastTime / 60000;                // 분 계산
+		long timeSec = (lastTime - (timeMin * 60000)) / 1000;
         
         // 내 필드와 상대방 필드 세팅, 없으면 Empty로
 
@@ -145,6 +150,7 @@ public class PageNum {
         
         if (turnValid == 1) { // 내 턴
 
+        	myHero.setTurnInit(1);
             mana = myHero.getMana();
             
             // 내 hand 카드 Setting
@@ -217,42 +223,51 @@ public class PageNum {
             
             while ( 1==1 ) {
             
-                System.out.println("******************************************************************************");
-                System.out.println("******** Turn : "+ turn + "    Mana : " + mana + "    아군 Life : "+ myLife);
-                System.out.println("******************************************************************************");
-                System.out.println("******** 적군 Life                                    ");
-                System.out.println("******** │1."+ yourLife + "│");
-                System.out.println("********                                                             ");
-                System.out.println("******** 적군 Unit                                                            ");
-                System.out.println("******** │2."+yourFieldName1+" "+yourFieldAttack1+"/"+yourFieldHealth1+"││3."+ yourFieldName2+" "+yourFieldAttack2+"/"+yourFieldHealth2 + "││4." + yourFieldName3+" "+yourFieldAttack3+"/"+yourFieldHealth3+"││5."+ yourFieldName4 +" "+yourFieldAttack4+"/"+yourFieldHealth4+ "│");
-                System.out.println("******************************************************************************");
-                System.out.println("******************************************************************************");
-                System.out.println("******************************************************************************");
-                System.out.println("******** 아군 Unit                                                            ");
-                System.out.println("******** │6."+myFieldName1+" "+myFieldAttack1+"/"+myFieldHealth1+"││7."+ myFieldName2+" "+myFieldAttack2+"/"+myFieldHealth2 + "││8." + myFieldName3+" "+myFieldAttack3+"/"+myFieldHealth3+"││9."+ myFieldName4 +" "+myFieldAttack4+"/"+myFieldHealth4+ "│");
-                System.out.println("********                                                             ");
-                System.out.println("********                                                             ");
-                System.out.println("******** 아군 핸드 Card                                                            ");
-                System.out.println("******** │10."+handCardName1+"/"+consumeMana1+"││11."+handCardName2+"/"+consumeMana2+"││12."+handCardName3+"/"+consumeMana3+"││13."+handCardName4+"/"+consumeMana4+"││14."+handCardName5+"/"+consumeMana5+"│");
-                System.out.println("******************************************************************************");
-                System.out.println("******************************************************************************");
-                System.out.println("******** 1. 소환된 유닛으로 공격                  ****************************");
-                System.out.println("******** 2. 마법 공격 또는 유닛 소환              ****************************");
-                System.out.println("******** 3. 핸드카드 셔플                         ****************************");
-                System.out.println("******** 4. 턴   종료                             ****************************");
-                System.out.println("******** 5. 항     복                             ****************************");
-                System.out.println("******************************************************************************");
-    
+            	System.out.println("******************************************************************************");
+				System.out.println("******** Turn : "+ turn + "    Mana : " + mana + "    아군 Life : "+ myLife + "    남은 시간  : "+ timeMin +"분 " + timeSec + "초");
+				System.out.println("******************************************************************************");
+				System.out.println("******** 적군 Life                                    ");
+				System.out.println("******** │1."+ yourLife + "│");
+				System.out.println("********                                                             ");
+				System.out.println("******** 적군 Unit                                                            ");
+				System.out.println("******** │2."+yourFieldName1+" "+yourFieldAttack1+"/"+yourFieldHealth1+"││3."+ yourFieldName2+" "+yourFieldAttack2+"/"+yourFieldHealth2 + "││4." + yourFieldName3+" "+yourFieldAttack3+"/"+yourFieldHealth3+"││5."+ yourFieldName4 +" "+yourFieldAttack4+"/"+yourFieldHealth4+ "│");
+				System.out.println("******************************************************************************");
+				System.out.println("******************************************************************************");
+				System.out.println("******************************************************************************");
+				System.out.println("******** 아군 Unit                                                            ");
+				System.out.println("******** │6."+myFieldName1+" "+myFieldAttack1+"/"+myFieldHealth1+"││7."+ myFieldName2+" "+myFieldAttack2+"/"+myFieldHealth2 + "││8." + myFieldName3+" "+myFieldAttack3+"/"+myFieldHealth3+"││9."+ myFieldName4 +" "+myFieldAttack4+"/"+myFieldHealth4+ "│");
+				System.out.println("********                                                             ");
+				System.out.println("********                                                             ");
+				System.out.println("******** 아군 핸드 Card                                                            ");
+				System.out.println("******** │10."+handCardName1+"/"+consumeMana1+"││11."+handCardName2+"/"+consumeMana2+"││12."+handCardName3+"/"+consumeMana3+"││13."+handCardName4+"/"+consumeMana4+"││14."+handCardName5+"/"+consumeMana5+"│");
+				System.out.println("******************************************************************************");
+				System.out.println("******************************************************************************");
+				System.out.println("******** 1. 소환된 유닛으로 공격                  ****************************");
+				System.out.println("******** 2. 마법 공격 또는 유닛 소환              ****************************");
+				System.out.println("******** 3. 핸드카드 셔플                         ****************************");
+				System.out.println("******** 4. 턴   종료                             ****************************");
+				System.out.println("******** 5. 카드 정보                             ****************************");
+				System.out.println("******** 6. 항     복                             ****************************");
+				System.out.println("******************************************************************************");
+		    
                 num = scan.nextInt();
     
-                if ( num == 1 || num == 2 || num == 3|| num == 4 || num ==5 ) {
-                    break;
-                }
+                if ( lastTime < 1 ) {
+					if ( num == 4 || num == 6) {
+						break;
+					}
+					System.out.println("3분이 지났습니다. 턴종료를 해주세요.");
+				} else if ( lastTime > 0) {
+					if ( num == 1 || num == 2 || num == 3|| num == 4 || num ==5 || num == 6) {
+						break;
+					}
+				}
             
             }
         } else if (turnValid == 0) { // 상대 턴
             
             mana = yourHero.getMana();
+            yourHero.setTurnInit(1);
             
             // 내 hand 카드 Setting
 
@@ -323,43 +338,49 @@ public class PageNum {
             }
 
             while(1 == 1) {
-            
-                System.out.println("******************************************************************************");
-                System.out.println("******** Turn : "+ turn + "    Mana : " + mana + "    아군 Life : "+ yourLife);
-                System.out.println("******************************************************************************");
-                System.out.println("******** 적군 Life                                    ");
-                System.out.println("******** │1."+ myLife + "│");
-                System.out.println("********                                                             ");
-                System.out.println("******** 적군 Unit                                                            ");
-                System.out.println("******** │2."+myFieldName1+" "+myFieldAttack1+"/"+myFieldHealth1+"││3."+ myFieldName2+" "+myFieldAttack2+"/"+myFieldHealth2 + "││4." + myFieldName3+" "+myFieldAttack3+"/"+myFieldHealth3+"││5."+ myFieldName4 +" "+myFieldAttack4+"/"+myFieldHealth4+ "│");
-                System.out.println("******************************************************************************");
-                System.out.println("******************************************************************************");
-                System.out.println("******************************************************************************");
-                System.out.println("******** 아군 Unit                                                            ");
-                System.out.println("******** │6."+yourFieldName1+" "+yourFieldAttack1+"/"+yourFieldHealth1+"││7."+ yourFieldName2+" "+yourFieldAttack2+"/"+yourFieldHealth2 + "││8." + yourFieldName3+" "+yourFieldAttack3+"/"+yourFieldHealth3+"││9."+ yourFieldName4 +" "+yourFieldAttack4+"/"+yourFieldHealth4+ "│");
-                System.out.println("********                                                             ");
-                System.out.println("********                                                             ");
-                System.out.println("******** 아군 핸드 Card                                                            ");
-                System.out.println("******** │10."+handCardName1+"/"+consumeMana1+"││11."+handCardName2+"/"+consumeMana2+"││12."+handCardName3+"/"+consumeMana3+"││13."+handCardName4+"/"+consumeMana4+"││14."+handCardName5+"/"+consumeMana5+"│");
-                System.out.println("******************************************************************************");
-                System.out.println("******************************************************************************");
-                System.out.println("******** 1. 소환된 유닛으로 공격                  ****************************");
-                System.out.println("******** 2. 마법 공격 또는 유닛 소환              ****************************");
-                System.out.println("******** 3. 핸드카드 셔플                         ****************************");
-                System.out.println("******** 4. 턴   종료                             ****************************");
-                System.out.println("******** 5. 항     복                             ****************************");
-                System.out.println("******************************************************************************");
-    
-                num = scan.nextInt();
-                if ( num == 1 || num == 2 || num == 3|| num == 4 || num ==5 ) {
-                    break;
-                }
-        
+
+				System.out.println("******************************************************************************");
+				System.out.println("******** Turn : "+ turn + "    Mana : " + mana + "    아군 Life : "+ yourLife + "    남은 시간  : "+ timeMin +"분 " + timeSec + "초");
+				System.out.println("******************************************************************************");
+				System.out.println("******** 적군 Life                                    ");
+				System.out.println("******** │1."+ myLife + "│");
+				System.out.println("********                                                             ");
+				System.out.println("******** 적군 Unit                                                            ");
+				System.out.println("******** │2."+myFieldName1+" "+myFieldAttack1+"/"+myFieldHealth1+"││3."+ myFieldName2+" "+myFieldAttack2+"/"+myFieldHealth2 + "││4." + myFieldName3+" "+myFieldAttack3+"/"+myFieldHealth3+"││5."+ myFieldName4 +" "+myFieldAttack4+"/"+myFieldHealth4+ "│");
+				System.out.println("******************************************************************************");
+				System.out.println("******************************************************************************");
+				System.out.println("******************************************************************************");
+				System.out.println("******** 아군 Unit                                                            ");
+				System.out.println("******** │6."+yourFieldName1+" "+yourFieldAttack1+"/"+yourFieldHealth1+"││7."+ yourFieldName2+" "+yourFieldAttack2+"/"+yourFieldHealth2 + "││8." + yourFieldName3+" "+yourFieldAttack3+"/"+yourFieldHealth3+"││9."+ yourFieldName4 +" "+yourFieldAttack4+"/"+yourFieldHealth4+ "│");
+				System.out.println("********                                                             ");
+				System.out.println("********                                                             ");
+				System.out.println("******** 아군 핸드 Card                                                            ");
+				System.out.println("******** │10."+handCardName1+"/"+consumeMana1+"││11."+handCardName2+"/"+consumeMana2+"││12."+handCardName3+"/"+consumeMana3+"││13."+handCardName4+"/"+consumeMana4+"││14."+handCardName5+"/"+consumeMana5+"│");
+				System.out.println("******************************************************************************");
+				System.out.println("******************************************************************************");
+				System.out.println("******** 1. 소환된 유닛으로 공격                  ****************************");
+				System.out.println("******** 2. 마법 공격 또는 유닛 소환              ****************************");
+				System.out.println("******** 3. 핸드카드 셔플                         ****************************");
+				System.out.println("******** 4. 턴   종료                             ****************************");
+				System.out.println("******** 5. 카드 정보                             ****************************");
+				System.out.println("******** 6. 항     복                             ****************************");
+				System.out.println("******************************************************************************");
+	
+				num = scan.nextInt();
+				
+				if ( lastTime < 1 ) {
+					if ( num == 4 || num == 6) {
+						break;
+					}
+					System.out.println("3분이 지났습니다. 턴종료를 해주세요.");
+				} else if ( lastTime > 0) {
+					if ( num == 1 || num == 2 || num == 3|| num == 4 || num ==5 || num ==6) {
+						break;
+					}
+				}
             }
         }
-
         return num;
-
     }
     
     // 소환된 유닛으로 공격
@@ -397,6 +418,8 @@ public class PageNum {
 
                 attackerNum = attackerNum - 6;
                 
+                Unit attacker = (Unit) myField.get(attackerNum);
+                
                 if (!(attackerNum < myField.size())) {
                     System.out.println("** Unit이 있는 필드를 선택해 주세요. 다시 선택해주세요.   *******************");
                     continue;
@@ -406,6 +429,11 @@ public class PageNum {
                     System.out.println("** Unit이 공격 할 수 없는 상태입니다. 다시 선택해 주세요.   *******************");
                     continue;
                 }
+                
+                if ( attacker.getNoActTurn() != 0) {
+					System.out.println("이 유닛은 얼어 있습니다. 다시 선택해 주세요.");
+					continue;
+				}
                 
                 break;
             }
@@ -472,8 +500,6 @@ public class PageNum {
                     attackValid[attackerNum] = 0;
                 }
                 
-                
-                
                 return victory;
             }
         } else if ( turnValid == 0) {
@@ -499,6 +525,8 @@ public class PageNum {
                 
                 attackerNum = attackerNum - 6;
 
+                Unit attacker = (Unit) yourField.get(attackerNum);
+                
                 if (!(attackerNum < yourField.size())) {
                     System.out.println("** Unit이 있는 필드를 선택해 주세요. 다시 선택해주세요.   *******************");
                     continue;
@@ -509,6 +537,11 @@ public class PageNum {
                     continue;
                 }
 
+                if ( attacker.getNoActTurn() != 0) {
+					System.out.println("이 유닛은 얼어 있습니다. 다시 선택해 주세요.");
+					continue;
+				}
+                
                 break;
                 
             }
@@ -574,8 +607,6 @@ public class PageNum {
                     attackValid[attackerNum] = 0;
                 }
                 
-                
-                
                 return victory;
             }
         }
@@ -635,7 +666,10 @@ public class PageNum {
                     
                     myHero.setMana(myHero.getMana()-unit.getConsumeMana());
                     myField.add(unit);
-                    attackValid[myField.size()-1] = 0;
+                    
+                    if ( unit.getSpecAbility() != 1) { //돌격 
+                    	attackValid[myField.size()-1] = 0;
+                    }
                     myHandCard.remove(use);
                     
                     return victory;
@@ -643,67 +677,125 @@ public class PageNum {
                 } else if (name.equals("Spell")) {
                     Spell attackSpell = (Spell) myHandCard.get(use);
                     
-                    while ( 1==1 ) {
-                    
-                        System.out.println("** 어떤 대상을 공격하시겠습니까?(1 ~ 5)  // 0번 선택시 메인화면으로 이동      ********************");
-                        
-                        targetNum = scan.nextInt();
-                        
-                        if ( targetNum == 0) {
-                            return victory;
+                    if(attackSpell.getAbilityNum()==1 || attackSpell.getAbilityNum()==3) { //Damage 주는 Spell
+                    	
+                    	while ( 1==1 ) {
+                            
+                            System.out.println("** 어떤 대상을 공격하시겠습니까?(1 ~ 5)  // 0번 선택시 메인화면으로 이동      ********************");
+                            
+                            targetNum = scan.nextInt();
+                            
+                            if ( targetNum == 0) {
+                                return victory;
+                            }
+                            
+                            if ( !(targetNum == 1 || targetNum == 2 || targetNum == 3 || targetNum == 4 || targetNum == 5)) {
+                                System.out.println("1 ~ 5를 입력해주세요");
+                                continue;
+                            }
+                            
+                            targetNum = targetNum-2;
+                            
+                            if ( targetNum < yourField.size()) {
+                                break;
+                            }
+                            
+                            System.out.println("** 공격할 대상이 없습니다. 다시 선택해주세요.    *******************");
                         }
                         
-                        if ( !(targetNum == 1 || targetNum == 2 || targetNum == 3 || targetNum == 4 || targetNum == 5)) {
-                            System.out.println("1 ~ 5를 입력해주세요");
+                        if( attackSpell.getConsumeMana() > myHero.getMana()){
+                            System.out.println("마나가 부족합니다.");
                             continue;
                         }
                         
-                        targetNum = targetNum-2;
+                        myHero.setMana(myHero.getMana()-attackSpell.getConsumeMana());
                         
-                        if ( targetNum < yourField.size()) {
-                            break;
-                        }
+                        myHandCard.remove(use);
                         
-                        System.out.println("** 공격할 대상이 없습니다. 다시 선택해주세요.    *******************");
-                    }
-                    
-                    if( attackSpell.getConsumeMana() > myHero.getMana()){
-                        System.out.println("마나가 부족합니다.");
-                        continue;
-                    }
-                    
-                    myHero.setMana(myHero.getMana()-attackSpell.getConsumeMana());
-                    
-                    myHandCard.remove(use);
-                    
-                    if ( targetNum == -1) {
-                        yourHeroLife = yourHeroLife - attackSpell.getDamage();
-                        
-                        if(yourHeroLife < 1) {
-                            System.out.println("상대의 영웅이 파괴되었습니다.");
-                            System.out.println("당신의 승리입니다.");
-                            return victory = 1;
-                        }
-                        yourHero.setLife(yourHeroLife);
-                        return victory;
-                    } else {
-                        Unit target = (Unit) yourField.get(targetNum);
-                        
-                        targetHealth = target.getHealth() - attackSpell.getDamage();
-                        
-                        if(targetHealth < 1) {
-                            System.out.println("공격받은 유닛이 파괴되었습니다.");
-                            yourField.remove(targetNum);
+                        if ( targetNum == -1) {
+                            yourHeroLife = yourHeroLife - attackSpell.getDamage();
+                            
+                            if(yourHeroLife < 1) {
+                                System.out.println("상대의 영웅이 파괴되었습니다.");
+                                System.out.println("당신의 승리입니다.");
+                                return victory = 1;
+                            }
+                            yourHero.setLife(yourHeroLife);
                             return victory;
+                        } else {
+                            Unit target = (Unit) yourField.get(targetNum);
+                            
+                            targetHealth = target.getHealth() - attackSpell.getDamage();
+                            
+                            if(targetHealth < 1) {
+                                System.out.println("공격받은 유닛이 파괴되었습니다.");
+                                yourField.remove(targetNum);
+                                return victory;
+                            }
+                            
+                            target.setHealth(targetHealth);
+                            
+                            return victory;
+                            
                         }
-                        
-                        target.setHealth(targetHealth);
-                        
-                        return victory;
-                        
-                    }
-                }
-            }
+                    	
+                    }else if ( attackSpell.getAbilityNum() == 2 || attackSpell.getAbilityNum() == 4) { //상대방 기절시키는 Spell
+						
+						while ( 1==1 ) {
+							
+							System.out.println("** 어떤 대상을 공격하시겠습니까?(2 ~ 5)  // 0번 선택시 메인화면으로 이동      ********************");
+							
+							targetNum = scan.nextInt();
+							
+							if ( targetNum == 0) {
+								return victory;
+							}
+							
+							if ( !(targetNum == 2 || targetNum == 3 || targetNum == 4 || targetNum == 5)) {
+								System.out.println("2 ~ 5를 입력해주세요");
+								continue;
+							}
+							
+							targetNum = targetNum-2;
+							
+							if ( targetNum < yourField.size()) {
+								break;
+							}
+							
+							System.out.println("** 공격할 대상이 없습니다. 다시 선택해주세요.    *******************");
+						}
+						
+						if( attackSpell.getConsumeMana() > myHero.getMana()){
+							System.out.println("마나가 부족합니다.");
+							continue;
+						}
+						
+						myHero.setMana(myHero.getMana()-attackSpell.getConsumeMana());
+						
+						myHandCard.remove(use);
+						
+						if(attackSpell.getAbilityNum() == 2 ) {
+						
+							Unit target = (Unit) yourField.get(targetNum);
+							
+							target.setNoActTurn(2);
+							
+						} else if (attackSpell.getAbilityNum() == 4) {
+							
+							int size = yourField.size();
+							
+							for ( int i = 0 ; i < size; i++) {
+							
+								Unit target = (Unit) yourField.get(targetNum);
+								
+								target.setNoActTurn(1);
+								
+							}
+							
+						}
+					}
+				}
+			}
         } else if ( turnValid == 0 ) { // 상대 턴
     
             while ( 1 == 1 ) {
@@ -746,7 +838,9 @@ public class PageNum {
                     yourHero.setMana(yourHero.getMana()-unit.getConsumeMana());
                     
                     yourField.add(unit);
-                    attackValid[yourField.size()-1] = 0;
+                    if(unit.getSpecAbility() != 1) {
+                    	attackValid[yourField.size()-1] = 0;	
+                    }
                     yourHandCard.remove(use);
                     
                     return victory;
@@ -834,4 +928,65 @@ public class PageNum {
         
     }
     
+    public void pageSix(int num, ArrayList list) {
+    	
+    	if ( !(list.size() > num)) {
+    		System.out.println("해당 번호에는 카드가 없습니다.");
+    		return;
+    	}
+    	
+    	String name = (list.get(num).getClass().getName()).substring(10);
+    	
+    	if (name.equals("Unit")){
+    		Unit unit = (Unit) list.get(num);
+    		String specAbil = null;
+    		
+    		if ( unit.getSpecAbility() == 0) {
+    			specAbil = "없음";
+    		} else if ( unit.getSpecAbility() == 1) {
+    			specAbil = "돌진 - 소환한 턴에 즉시 공격 할 수 있다.";
+    		} 
+//    		else if ( unit.getSpecAbility() == 2) {
+//    			specAbil = "방어 - 다른 유닛이나 영웅을 공격 할 수 없다.";
+//    		}
+    		
+    		
+    		System.out.println("**************************");
+            System.out.println("***** Unit ***************");
+            System.out.println("***** 1.이    름 : " + unit.getName());
+            System.out.println("***** 2.소비마나 : " + unit.getConsumeMana());
+            System.out.println("***** 3.종    족 : " + unit.getSpecies());
+            System.out.println("***** 4.공 격 력 : " + unit.getAttack());
+            System.out.println("***** 5.체    력 : " + unit.getHealth());
+            System.out.println("***** 6.특수능력 : " +  specAbil);
+            System.out.println("**************************");
+            System.out.println("**************************");
+            
+    		
+    	} else if ( name.equals("Spell")) {
+    		Spell spell = (Spell) list.get(num);
+    		
+    		String specAbil = null;
+    		
+    		if ( spell.getAbilityNum() == 1) {
+    			specAbil = "Unit 또는 캐릭터에게 2 Damage";
+    		} else if ( spell.getAbilityNum() == 2) {
+    			specAbil = "한 유닛을 2턴간 얼린다.";
+    		} else if ( spell.getAbilityNum() == 3) {
+    			specAbil = "Unit에게 4 피해를 준다.";
+    		} else if ( spell.getAbilityNum() == 4) {
+    			specAbil = "적 유닛 전체를 1턴간 얼린다.";
+    		}
+
+    		System.out.println("**************************");
+            System.out.println("***** Spell ***************");
+            System.out.println("***** 1.이    름 : " + spell.getName());
+            System.out.println("***** 2.소비마나 : " + spell.getConsumeMana());
+            System.out.println("***** 3.종    족 : " + spell.getSpecies());
+            System.out.println("***** 4.공 격 력 : " + spell.getDamage());
+            System.out.println("***** 6.특수능력 : " +  specAbil);
+            System.out.println("**************************");
+            System.out.println("**************************");
+    	}
+    }
 }

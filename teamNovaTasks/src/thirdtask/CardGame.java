@@ -1,6 +1,7 @@
 package thirdtask;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class CardGame {
 
@@ -9,6 +10,7 @@ public class CardGame {
 
         CommonFunction cf = new CommonFunction();
         PageNum pn = new PageNum();
+        Scanner scan = new Scanner(System.in);
         int returnValue = 0;
         int myHeroNum = 0;
         int yourHeroNum = 0;
@@ -16,6 +18,11 @@ public class CardGame {
         int victory = 0;
         int turnValid = 0;
         int mana = 0;
+        int cardNum = 0;
+        String value = null;
+        int turnInit = 0; //0이면 맨 처음 하면
+		long startTime = System.currentTimeMillis(); 
+		
         // Hero
         ArrayList myDeck = new ArrayList();
         ArrayList yourDeck = new ArrayList();
@@ -58,13 +65,40 @@ public class CardGame {
             // 첫 Deck Draw(5장)
             myHandCard = cf.deckDraw(5, myHandCard, myDeck);
             yourHandCard = cf.deckDraw(5, yourHandCard, yourDeck);
-
             
+            TurnTimeThread timeThread = null;
             
             while (true) {
 
+            	turnValid = turn % 2;
+				
+            	
+            	
+				if ( turnValid == 1 ) {
+					
+					if ( myHero.getTurnInit() == 0 ) {
+						
+						 timeThread = new TurnTimeThread();
+						
+						timeThread.start();
+						
+						startTime = System.currentTimeMillis();
+					}
+					
+				} else if ( turnValid == 0 ) {
+					if ( yourHero.getTurnInit() == 0 ) {
+						
+						timeThread = new TurnTimeThread();
+						
+						timeThread.start();
+						
+						
+						startTime = System.currentTimeMillis();
+					}
+				}
+            	
                 //Unit 공격
-                returnValue = pn.pageTwo(turn, myHero, yourHero, myDeck,
+                returnValue = pn.pageTwo(turn, startTime, myHero, yourHero, myDeck,
                         yourDeck, myHandCard, yourHandCard, myField, yourField);
 
                 if (returnValue == 1) { //Unit 또는 Hero 공격
@@ -132,12 +166,16 @@ public class CardGame {
                     
                     turnValid = turn % 2;
                     
+                    timeThread.stop();
+                    
                     if ( turnValid == 1 ) {
                         if ( myHandCard.size() < 5) {
                             myHandCard = cf.deckDraw(5-myHandCard.size(), myHandCard, myDeck);
                         }
                         
                         myHero.setShuffleAble(1);
+                        
+                        myHero.setTurnInit(0);
                         
                         mana = (turn+1)/2;
                         if ( mana > 10 ) {
@@ -150,6 +188,14 @@ public class CardGame {
                         for(int i = 0 ; i < 5 ; i++) {
                             attackValid[i] = 1; 
                         }
+                        
+                      //Unit 카드  얼음 턴 감소
+						for (int i = 0; i < myField.size(); i++) {
+							Unit unit = (Unit) myField.get(i);
+							
+							if ( unit.getNoActTurn() != 0)
+							unit.setNoActTurn(unit.getNoActTurn() - 1);
+						}
                         
                     } else if ( turnValid == 0 ) {
                         
@@ -164,15 +210,82 @@ public class CardGame {
                             mana = 10;
                         }
                         
+                        yourHero.setTurnInit(0);
                         yourHero.setMana(mana);
                         //attackValid값이 1이면 공격 할 수 있다. 
                         for(int i = 0 ; i < 5 ; i++) {
                             attackValid[i] = 1; 
                         }
+                        
+                      //Unit 카드  얼음 턴 감소
+						for (int i = 0; i < yourField.size(); i++) {
+							Unit unit = (Unit) yourField.get(i);
+							
+							if ( unit.getNoActTurn() != 0)
+							unit.setNoActTurn(unit.getNoActTurn() - 1);
+						}
+                        
                     }
                     
                     continue;
-                } else if (returnValue == 5) { //항복 선언
+                } else if (returnValue == 5) { //카드 정보
+                
+                	System.out.println("몇번 카드를 보시겠습니까. (2 ~ 14)");
+                	
+                	cardNum = scan.nextInt();
+                	turnValid = turn % 2;
+                    
+                	if ( turnValid == 1 ) {
+                    
+                		if ( cardNum == 2 || cardNum == 3 || cardNum == 4 || cardNum == 5 ) {
+                			pn.pageSix(cardNum-2, yourField);
+                			
+                			System.out.println("아무 값이나 입력하세요");
+                			value = scan.next();
+                			continue;
+                			
+                		} else if ( cardNum == 6 || cardNum == 7 || cardNum == 8 || cardNum == 9 ) {
+                			pn.pageSix(cardNum-6, myField);
+                			
+                			System.out.println("아무 값이나 입력하세요");
+                			value = scan.next();
+                			continue;
+                			
+                		} else if ( cardNum == 10 || cardNum == 11 || cardNum == 12 || cardNum == 13 || cardNum == 14 ) {
+                			pn.pageSix(cardNum-10, myHandCard);
+                			
+                			System.out.println("아무 값이나 입력하세요");
+                			value = scan.next();
+                			continue;
+                		}
+                    
+                    } else if ( turnValid == 0 ){
+                        
+                    	if ( cardNum == 2 || cardNum == 3 || cardNum == 4 || cardNum == 5 ) {
+                			pn.pageSix(cardNum-2, myField);
+                			
+                			System.out.println("아무 값이나 입력하세요");
+                			value = scan.next();
+                			continue;
+                			
+                		} else if ( cardNum == 6 || cardNum == 7 || cardNum == 8 || cardNum == 9 ) {
+                			pn.pageSix(cardNum-6, yourField);
+                			
+                			System.out.println("아무 값이나 입력하세요");
+                			value = scan.next();
+                			continue;
+                			
+                		} else if ( cardNum == 10 || cardNum == 11 || cardNum == 12 || cardNum == 13 || cardNum == 14 ) {
+                			pn.pageSix(cardNum-10, yourHandCard);
+                			
+                			System.out.println("아무 값이나 입력하세요");
+                			value = scan.next();
+                			continue;
+                		}
+                    	
+                    }
+                	
+                } else if (returnValue == 6) { //항복 선언
                     turnValid = turn % 2;
                     
                     if ( turnValid == 1 ) {

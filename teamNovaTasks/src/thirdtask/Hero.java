@@ -7,6 +7,15 @@ public class Hero {
 	private int life;
 	private int mana;
 	private int shuffleAble;
+	private int turnInit;
+	
+	public int getTurnInit() {
+		return turnInit;
+	}
+
+	public void setTurnInit(int turnInit) {
+		this.turnInit = turnInit;
+	}
 	
 	public int getShuffleAble() {
 		return shuffleAble;
@@ -24,11 +33,13 @@ public class Hero {
 			this.mana = 1;
 			this.shuffleAble = 1;
 			this.name = "James";
+			this.turnInit = 0;
 		} else if (check == 2) {
 			this.species = "demon";
 			this.life = 20;
 			this.mana = 1;
 			this.name = "Ilidan";
+			this.turnInit = 0;
 		}
 	}
 
